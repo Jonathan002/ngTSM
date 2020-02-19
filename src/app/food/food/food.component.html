@@ -1,0 +1,31 @@
+<section>
+  <h2>Salmon</h2>
+  <figure class="img">
+    <ng-container *ngIf="food.salmon.raw then rawSalmon; else cookedSalmon"></ng-container>
+  </figure>
+  <ul>
+    <li>
+      Salmon Is Raw: <strong>{{ food.salmon.raw | json }}</strong>
+    </li>
+    <li>
+      Salmon Pounds: <strong>{{ food.salmon.pounds }}</strong>
+    </li>
+    <li>
+      Stove is on?: <strong>{{ food.stove.on | json }}</strong>
+    </li>
+  </ul>
+  <button (click)="food.salmon.cookActionReducer()">Action: Cook Food</button>
+</section>
+<section>
+  <h2>Potato</h2>
+  <p>Potato State "isPotato": <strong>{{ food.potato.isPotato | json }}</strong></p>
+</section>
+
+
+<ng-template #cookedSalmon>
+    <img src="/assets/salmon-cooked.jpg" alt="Cooked Salmon">
+</ng-template>
+
+<ng-template #rawSalmon>
+    <img src="/assets/salmon-raw.jpg" alt="Raw Salmon">
+</ng-template>
