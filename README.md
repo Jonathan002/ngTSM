@@ -1,27 +1,38 @@
-# Tsm
+# ngTSM (Angular Typescript State Management)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
+The Goal of ngTSM is to follow a paradim of protecting state for an application while only relying on Typescript to Type protect it.
 
-## Development server
+- It is light weight and doesn't require an extra library to be installed.
+- It does not use javascript runtime to protect state such as ngrx selectors.
+- The methods are traceable as typings are retained vs having to retype actions if you are using ngrx.
+- The paradim is less powerful than intercepting actions, although it should have state mutation be tracable in a linear way. Too much interceptions of an action may be hard to read and cause bugs.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The concept can be learned quickely as you only need to know Typescript and Angular.
 
-## Code scaffolding
+## One Barrel Per Module
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- A ngrx store can be represented as a ServiceBarrel.
+- Each Barrel Collects Services that Type protect `readonly` state and mutate state with methods (which acts as reducers and actions).
+- Components can DI the service Barrel and read state or mutate state. (See Project for example)
 
-## Build
+## Advance User Guide
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Share State with Hiearchy DI
 
-## Running unit tests
+- To prevent Circular Dependency a DI naming guide has been created.
+  - Highest
+  - Higher
+  - High
+  - Medium (no prefix)
+  - Low
+  - Lower
+  - Lowest
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Lower Prefix names can be DI into services that are prefixed higher.
 
-## Running end-to-end tests
+### Share State with SharedService
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+- A private shared store service can be attached to each feature barrel and be used privately between all the service of the feature barrel. It can be used to hold utilities such as shared state properties or contain observables to emit state changes. This should be used as a last resort if Hiearchy DI cannot do the job. The goal is to isolate state and mutation logic together as much as possible.
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
