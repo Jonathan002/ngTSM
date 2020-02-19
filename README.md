@@ -3,7 +3,7 @@
 The Goal of ngTSM is to follow a paradim of protecting state for an application while only relying on Typescript to Type protect it.
 
 - It is light weight and doesn't require an extra library to be installed.
-- It does not use javascript runtime to protect state such as ngrx selectors.
+- It does not use **javascript runtime** to protect state such as ngrx selectors.
 - The methods are traceable as typings are retained vs having to retype actions if you are using ngrx.
 - The paradim is less powerful than intercepting actions, although it should have state mutation be tracable in a linear way. Too much interceptions of an action may be hard to read and cause bugs.
 
@@ -32,7 +32,7 @@ Lower Prefix names can be DI into services that are prefixed higher.
 
 ### Share State with SharedService
 
-- A private shared store service can be attached to each feature barrel and be used privately between all the service of the feature barrel. It can be used to hold utilities such as shared state properties or contain observables to emit state changes. This should be used as a last resort if Hiearchy DI cannot do the job. The goal is to isolate state and mutation logic together as much as possible.
+- A private shared store service (hiearchy of *lowest*) can be attached to each feature barrel and be used privately between all the service of the feature barrel. It can be used to hold utilities such as shared state properties or contain observables to emit state changes. This should be used as a last resort if Hiearchy DI cannot do the job. The goal is to isolate state and mutation logic together as much as possible.
 
 
 
