@@ -20,17 +20,20 @@ The concept can be learned quickely as you only need to know Typescript and Angu
 ### Share State with Hiearchy DI
 
 - To prevent Circular Dependency a DI naming guide has been created.
-  - Highest{incrementNumber} (for extreme cases)
-  - Highest
-  - Higher
   - High
   - Medium (no prefix - starting point)
   - Low
-  - Lower
-  - Lowest
-  - Lowest{decrementNumber} (for extreme cases)
 
 Lower Prefix names can be DI into services that are prefixed higher.
+
+For extreme cases the hiearchy names can continue with increments or decrements.
+- Highest{incrementNumber}
+- Highest
+- Higher
+- ...
+- Lower
+- Lowest
+- Lowest{decrementNumber}
 
 ### Share State with SharedService
 
