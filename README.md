@@ -15,6 +15,9 @@ The concept can be learned quickely as you only need to know Typescript and Angu
 - Each Barrel Collects Services that Type protect `readonly` state and mutate state with methods (which acts as reducers and actions).
 - Components can DI the service Barrel and read state or mutate state. (See Project for example)
 
+### Can It Scale?
+- Ideally it should scale as much as angular scales since it is module based.
+
 ## Advance User Guide
 
 ### Share State with Hiearchy DI
@@ -38,6 +41,5 @@ For extreme cases the hiearchy names can continue with increments or decrements.
 ### Share State with SharedService
 
 - A private shared store service (hiearchy of *lowest*) can be attached to each feature barrel and be used privately between all the service of the feature barrel. It can be used to hold utilities such as shared state properties or contain observables to emit state changes. This should be used as a last resort if Hiearchy DI cannot do the job. The goal is to isolate state and mutation logic together as much as possible.
-
 
 
